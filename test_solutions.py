@@ -1,6 +1,6 @@
 import pytest
 from dataclasses import dataclass
-from Dynamic_Programming.solutions import fibbonacci, lis
+from Dynamic_Programming.solutions import fibbonacci, lis, knapsack
 
 from typing import Any
 
@@ -79,3 +79,5 @@ TEST_CASE = "knapsack"
 @pytest.mark.parametrize("case", cases[TEST_CASE])
 def test_knapsack(case):
     test_data = TestCaseData(**cases[TEST_CASE][case])
+    func = knapsack
+    assert func(**test_data.input) == test_data.answer
