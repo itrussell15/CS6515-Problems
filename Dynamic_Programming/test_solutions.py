@@ -1,6 +1,6 @@
 import pytest
 from dataclasses import dataclass
-from Dynamic_Programming.solutions import fibbonacci, lis, knapsack
+import solutions as DP
 
 from typing import Any
 
@@ -40,6 +40,30 @@ cases = {
             "answer": 1,
         }
     },
+    # https://leetcode.com/problems/longest-common-subsequence/
+    "lcs": {
+        "1": {
+            "input": {
+                "x": "abcde",
+                "y": "ace"
+            },
+            "answer": 3
+        },
+        "2": {
+            "input": {
+                "x": "abc",
+                "y": "abc"
+            },
+            "answer": 4
+        },
+        "3": {
+            "input": {
+                "x": "abc",
+                "y": "def"
+            },
+            "answer": 0
+        }
+    },
     # https://leetcode.com/problems/painting-the-walls/description/
     "knapsack":{
         "1": {
@@ -59,25 +83,26 @@ cases = {
     }
 }
 
-TEST_CASE = "fibonacci"
-# Parametrize test cases
-@pytest.mark.parametrize("case", cases[TEST_CASE])
+@pytest.mark.parametrize("case", cases["fibonacci"])
 def test_fibonacci(case):
-    test_data = TestCaseData(**cases[TEST_CASE][case])
-    func = fibbonacci
+    test_data = TestCaseData(**cases["fibonacci"][case])
+    func = DP.fibbonacci
     assert func(test_data.input) == test_data.answer
 
-TEST_CASE = "lis"
-# Parametrize test cases
-@pytest.mark.parametrize("case", cases[TEST_CASE])
+@pytest.mark.parametrize("case", cases["lis"])
 def test_lis(case):
-    test_data = TestCaseData(**cases[TEST_CASE][case])
-    func = lis
+    test_data = TestCaseData(**cases["lis"][case])
+    func = DP.lis
     assert func(test_data.input) == test_data.answer
 
-TEST_CASE = "knapsack"
-@pytest.mark.parametrize("case", cases[TEST_CASE])
+@pytest.mark.parametrize("case", cases["lcs"])
+def test_lcs(case):
+    test_data = TestCaseData(**cases["lcs"][case])
+    func = DP.lcs
+    assert func(**test_data.input) == test_data.answer
+
+@pytest.mark.parametrize("case", cases["knapsack"])
 def test_knapsack(case):
-    test_data = TestCaseData(**cases[TEST_CASE][case])
-    func = knapsack
+    test_data = TestCaseData(**cases["knapsack"][case])
+    func = DP.knapsack
     assert func(**test_data.input) == test_data.answer

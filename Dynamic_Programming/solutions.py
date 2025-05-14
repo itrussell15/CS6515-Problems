@@ -6,5 +6,8 @@ def fibbonacci(n: int) -> int:
 def lis(x: List[int]) -> int:
     return 0
 
+def lcs(x: str, y: str) -> int:
+    return 0
+
 def knapsack(weights: List[int], values: List[int]) -> int:
     return 0
