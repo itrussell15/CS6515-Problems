@@ -10,6 +10,16 @@ def fibbonacci(n: int) -> int:
     """
     return None
 
+def corrupted_text(x: str, valid_words: List[str]) -> bool:
+    """
+    Corrupted Text (DPV 6.4)
+        Runtime: O(n^2)
+        Memory:  O(?)
+    Leetcode:
+    Neetcode:
+    """
+    return None
+
 def lis(x: List[int]) -> int:
     """
     Longest Increasing Subsequence
@@ -20,7 +30,17 @@ def lis(x: List[int]) -> int:
     """
     return None
 
-def lcs(x: str, y: str) -> int:
+def longest_common_substring(x: str, y: str) -> int:
+    """
+    Longest Common Substring
+        Runtime: O(?)
+        Memory:  O(?)
+    Leetcode:
+    Neetcode:
+    """
+    return None
+
+def longest_common_subsequence(x: str, y: str) -> int:
     """
     Longest Common Subsequence
         Runtime: O(?)

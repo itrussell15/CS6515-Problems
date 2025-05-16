@@ -25,6 +25,33 @@ cases = {
                 "answer": 3,
         }
     },
+    "corrupted_text": {
+        "1": {
+            "input": "itwasthebestoftimes",
+            "answer": True
+        },
+        "2": {
+            "input": "abcdefghijk",
+            "answer": False
+        },
+        "3": {
+            "input": "didyougetitright",
+            "answer": True
+        },
+        "words": [
+            "it",
+            "was",
+            "the",
+            "best",
+            "of",
+            "times",
+            "did",
+            "you",
+            "get",
+            "it",
+            "right"
+        ]
+    },
     # https://leetcode.com/problems/longest-increasing-subsequence/description/
     "lis": {
         "1": {
@@ -41,7 +68,7 @@ cases = {
         }
     },
     # https://leetcode.com/problems/longest-common-subsequence/
-    "lcs": {
+    "longest_common_subsequence": {
         "1": {
             "input": {
                 "x": "abcde",
@@ -95,10 +122,16 @@ def test_lis(case):
     func = DP.lis
     assert func(test_data.input) == test_data.answer
 
+@pytest.mark.parametrize("case", cases["corrupted_text"])
+def test_corrupted_text(case):
+    test_data = TestCaseData(**cases["corrupted_text"][case])
+    func = DP.corrupted_text
+    assert func(test_data.input, cases["corrupted_text"]["words"]) == test_data.answer
+
 @pytest.mark.parametrize("case", cases["lcs"])
-def test_lcs(case):
+def test_longest_common_subsequence(case):
     test_data = TestCaseData(**cases["lcs"][case])
-    func = DP.lcs
+    func = DP.longest_common_subsequence
     assert func(**test_data.input) == test_data.answer
 
 @pytest.mark.parametrize("case", cases["knapsack"])
