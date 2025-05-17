@@ -6,7 +6,7 @@ def fibonacci(n: int) -> int:
         Runtime: O(?)
         Memory:  O(?)
     Leetcode: https://leetcode.com/problems/fibonacci-number/description/
-    Neetcode: 
+    Neetcode:
     """
     return None
 
