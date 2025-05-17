@@ -6,15 +6,9 @@ def fibonacci(n: int) -> int:
         Runtime: O(?)
         Memory:  O(?)
     Leetcode: https://leetcode.com/problems/fibonacci-number/description/
-    Neetcode:
+    Neetcode: 
     """
-    if n == 0 or n == 1:
-        return n
-    cache = [0, 1]
-    for i in range(1, n):
-        old_item = cache.pop(0)
-        cache.append(old_item + cache[0])
-    return cache[-1]
+    return None
 
 def corrupted_text(x: str, valid_words: List[str]) -> bool:
     """
@@ -24,19 +18,7 @@ def corrupted_text(x: str, valid_words: List[str]) -> bool:
     Leetcode: https://leetcode.com/problems/word-break/
     Neetcode: https://www.youtube.com/watch?v=Sx9NNgInc3A
     """
-    head = 0
-    tail = 1
-
-    while tail <= len(x):
-        if tail == len(x):
-            break
-
-        if x[head:tail] in valid_words:
-            head = tail
-            tail = head + 1
-        else:
-            tail += 1
-    return x[head:tail] in valid_words
+    return None
 
 def lis(x: List[int]) -> int:
     """
@@ -46,13 +28,7 @@ def lis(x: List[int]) -> int:
     Leetcode: https://leetcode.com/problems/longest-increasing-subsequence/description/
     Neetcode: https://www.youtube.com/watch?v=cjWnW0hdF1Y
     """
-    nums_loop = range(len(x))
-    lens = [1 for _ in nums_loop]
-    for i in nums_loop:
-        for j in range(i):
-            if x[j] < x[i] and lens[i] < 1 + lens[j]:
-                lens[i] = lens[j] + 1
-    return max(lens)
+    return None
 
 def longest_common_substring(x: str, y: str) -> int:
     """
