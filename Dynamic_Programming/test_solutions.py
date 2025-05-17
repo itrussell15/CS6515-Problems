@@ -1,5 +1,5 @@
 import pytest
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import solutions as DP
 
 from typing import Any
@@ -8,6 +8,7 @@ from typing import Any
 class TestCaseData:
     input: Any
     answer: Any
+    other_args: field(default_factory=dict) = None
 
 cases = {
     # https://leetcode.com/problems/fibonacci-number/description/
@@ -25,32 +26,43 @@ cases = {
                 "answer": 3,
         }
     },
+    # https://leetcode.com/problems/word-break/
     "corrupted_text": {
         "1": {
-            "input": "itwasthebestoftimes",
+            "input": {
+                "x": "itwasthebestoftimes",
+                "valid_words": ["it", "was", "the", "best", "of", "times"]
+            },
             "answer": True
         },
         "2": {
-            "input": "abcdefghijk",
+            "input":{
+                "x": "abcdefghijk",
+                "valid_words": ["it", "was", "the", "best", "of", "times"]
+            },
             "answer": False
         },
         "3": {
-            "input": "didyougetitright",
+            "input": {
+                "x": "didyougetitright",
+                "valid_words": ["did", "you", "get", "it", "right"],
+            },
             "answer": True
         },
-        "words": [
-            "it",
-            "was",
-            "the",
-            "best",
-            "of",
-            "times",
-            "did",
-            "you",
-            "get",
-            "it",
-            "right"
-        ]
+        "4": {
+            "input": {
+                "x": "aaaaaaa",
+                "valid_words": ["aaaa","aaa"]
+            },
+            "answer": True
+        },
+        "5": {
+            "input": {
+                "x": "catsandog",
+                "valid_words": ["cats","dog","sand","and","cat"]
+            },
+            "answer": True
+        },
     },
     # https://leetcode.com/problems/longest-increasing-subsequence/description/
     "lis": {
@@ -92,6 +104,30 @@ cases = {
         }
     },
     # https://leetcode.com/problems/painting-the-walls/description/
+    "making_change": {
+        "1": {
+            "input": {
+                "denominations": [1, 5, 10, 20],
+                "value": 16
+            },
+            "answer": True
+        },
+        "2": {
+            "input": {
+                "denominations": [1, 5, 10, 20],
+                "value": 31
+            },
+            "answer": True
+        },
+        "3": {
+            "input": {
+                "denominations": [1, 5, 10, 20],
+                "value": 40
+            },
+            "answer": True
+        }
+    },
+    # https://leetcode.com/problems/painting-the-walls/description/
     "knapsack":{
         "1": {
             "input": {
@@ -112,8 +148,9 @@ cases = {
 
 @pytest.mark.parametrize("case", cases["fibonacci"])
 def test_fibonacci(case):
+
     test_data = TestCaseData(**cases["fibonacci"][case])
-    func = DP.fibbonacci
+    func = DP.fibonacci
     assert func(test_data.input) == test_data.answer
 
 @pytest.mark.parametrize("case", cases["lis"])
@@ -126,12 +163,18 @@ def test_lis(case):
 def test_corrupted_text(case):
     test_data = TestCaseData(**cases["corrupted_text"][case])
     func = DP.corrupted_text
-    assert func(test_data.input, cases["corrupted_text"]["words"]) == test_data.answer
+    assert func(**test_data.input) == test_data.answer
 
-@pytest.mark.parametrize("case", cases["lcs"])
+@pytest.mark.parametrize("case", cases["longest_common_subsequence"])
 def test_longest_common_subsequence(case):
-    test_data = TestCaseData(**cases["lcs"][case])
+    test_data = TestCaseData(**cases["longest_common_subsequence"][case])
     func = DP.longest_common_subsequence
+    assert func(**test_data.input) == test_data.answer
+
+@pytest.mark.parametrize("case", cases["making_change"])
+def test_knapsack(case):
+    test_data = TestCaseData(**cases["making_change"][case])
+    func = DP.making_change
     assert func(**test_data.input) == test_data.answer
 
 @pytest.mark.parametrize("case", cases["knapsack"])
